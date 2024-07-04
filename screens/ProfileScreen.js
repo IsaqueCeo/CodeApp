@@ -24,7 +24,7 @@ export default function ProfileScreen() {
         <Text style={styles.profileJob}>Programador Full Stack</Text>
         <View style={styles.followContainer}>
           <Text style={styles.followers}>1000 Seguidores</Text>
-          <Text style={styles.following}>1200 Seguidores</Text>
+          <Text style={styles.following}>Seguindo 500</Text>
         </View>
       </View>
       
