@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const settings = [
   { id: '1', icon: 'user', text: 'Conta', screen: 'Profile' },
-  { id: '2', icon: 'bell', text: 'Notificações' },
+  { id: '2', icon: 'bell', text: 'Notificações', screen: 'Notifications' },
   { id: '3', icon: 'eye', text: 'Aparência' },
   { id: '4', icon: 'lock', text: 'Privacidade e Segurança' },
   { id: '5', icon: 'headphones', text: 'Ajuda e Suporte' },
