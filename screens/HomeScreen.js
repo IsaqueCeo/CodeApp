@@ -1,8 +1,42 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
+const recommendations = [
+  {
+    id: '1',
+    image: 'https://media.gettyimages.com/id/638921947/pt/foto/mexico-city-mexico.jpg?s=612x612&w=gi&k=20&c=UmYU2vMJPy3guRnEgobDIwZLT2vgChywsQxwyCOqk30=',
+    top: 'Destino',
+    name: 'Nome do lugar',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in cursus magna.',
+    discount: '-30%'
+  },
+  {
+    id: '2',
+    image: 'https://blog.123milhas.com/wp-content/uploads/2022/09/estados-unidos-guia-de-turismo-cultura-gastronomia-e-mais-walt-disney-world-conexao123.jpg',
+    top: 'Destino',
+    name: 'Nome do lugar',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in cursus magna.',
+    discount: '-25%'
+  },
+  // Adicione mais recomendações aqui
+];
+
 export default function HomeScreen() {
+  const renderRecommendation = ({ item }) => (
+    <View style={styles.recommendationCard}>
+      <Image source={{ uri: item.image }} style={styles.recommendationImage} />
+      <View style={styles.recommendationContent}>
+        <Text style={styles.recommendationTop}>{item.top}</Text>
+        <Text style={styles.recommendationName}>{item.name}</Text>
+        <Text style={styles.recommendationDescription}>{item.description}</Text>
+        <View style={styles.recommendationFooter}>
+          <Text style={styles.recommendationDiscount}>{item.discount}</Text>
+        </View>
+      </View>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -39,37 +73,13 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.recommendations}>
-        <Text style={styles.recommendationsTitle}>Recomendações</Text>
-
-        <View style={styles.recommendationCard}>
-          <Image source={{ uri: 'https://media.gettyimages.com/id/638921947/pt/foto/mexico-city-mexico.jpg?s=612x612&w=gi&k=20&c=UmYU2vMJPy3guRnEgobDIwZLT2vgChywsQxwyCOqk30=' }} style={styles.recommendationImage} />
-          <View style={styles.recommendationContent}>
-            <Text style={styles.recommendationTop}>Destino</Text>
-            <Text style={styles.recommendationName}>Nome do lugar</Text>
-            <Text style={styles.recommendationDescription}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in cursus magna.
-            </Text>
-            <View style={styles.recommendationFooter}>
-              <Text style={styles.recommendationDiscount}>-30%</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.recommendationCard}>
-          <Image source={{ uri: 'https://blog.123milhas.com/wp-content/uploads/2022/09/estados-unidos-guia-de-turismo-cultura-gastronomia-e-mais-walt-disney-world-conexao123.jpg' }} style={styles.recommendationImage} />
-          <View style={styles.recommendationContent}>
-            <Text style={styles.recommendationTop}>Destino</Text>
-            <Text style={styles.recommendationName}>Nome do lugar</Text>
-            <Text style={styles.recommendationDescription}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in cursus magna.
-            </Text>
-            <View style={styles.recommendationFooter}>
-              <Text style={styles.recommendationDiscount}>-25%</Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+      <FlatList
+        data={recommendations}
+        renderItem={renderRecommendation}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.recommendations}
+        ListHeaderComponent={<Text style={styles.recommendationsTitle}>Recomendações</Text>}
+      />
     </View>
   );
 }

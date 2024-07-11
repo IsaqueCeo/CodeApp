@@ -1,63 +1,56 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-export default function SettingsScreen() {
+const settings = [
+  { id: '1', icon: 'user', text: 'Conta', screen: 'Profile' },
+  { id: '2', icon: 'bell', text: 'Notificações' },
+  { id: '3', icon: 'eye', text: 'Aparência' },
+  { id: '4', icon: 'lock', text: 'Privacidade e Segurança' },
+  { id: '5', icon: 'headphones', text: 'Ajuda e Suporte' },
+  { id: '6', icon: 'info', text: 'Sobre' },
+];
+
+export default function SettingsScreen({ navigation }) {
+  const renderItem = ({ item }) => (
+    <TouchableOpacity 
+      style={styles.settingItem}
+      onPress={() => {
+        if (item.screen) {
+          navigation.navigate(item.screen);
+        }
+      }}
+    >
+      <Icon name={item.icon} size={20} color="#000" />
+      <Text style={styles.settingText}>{item.text}</Text>
+      <Icon name="chevron-right" size={20} color="#000" />
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity>
           <Icon name="arrow-left" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Settings</Text>
+        <Text style={styles.headerText}>Configuração</Text>
       </View>
 
       <View style={styles.searchContainer}>
         <Icon name="search" size={20} color="#888" style={styles.searchIcon} />
         <TextInput 
           style={styles.searchInput}
-          placeholder="Search for a setting..."
+          placeholder="Pesquise uma configuração"
           placeholderTextColor="#888"
         />
       </View>
 
-      <ScrollView style={styles.scrollContainer}>
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="user" size={20} color="#000" />
-          <Text style={styles.settingText}>Conta</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="bell" size={20} color="#000" />
-          <Text style={styles.settingText}>Notificações</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="eye" size={20} color="#000" />
-          <Text style={styles.settingText}>Aparência</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="lock" size={20} color="#000" />
-          <Text style={styles.settingText}>Privacidade e Segurança</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="headphones" size={20} color="#000" />
-          <Text style={styles.settingText}>Ajuda e Suporte</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.settingItem}>
-          <Icon name="info" size={20} color="#000" />
-          <Text style={styles.settingText}>Sobre</Text>
-          <Icon name="chevron-right" size={20} color="#000" />
-        </TouchableOpacity>
-      </ScrollView>
+      <FlatList
+        data={settings}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.flatListContainer}
+      />
     </View>
   );
 }
@@ -95,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
   },
-  scrollContainer: {
+  flatListContainer: {
     paddingHorizontal: 20,
   },
   settingItem: {
