@@ -12,12 +12,12 @@ export default function NotificationsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={styles.headerText}>Notificações</Text>
-      </View>
+      </View> */}
 
       <View style={styles.settingsContainer}>
         <View style={styles.settingItem}>
