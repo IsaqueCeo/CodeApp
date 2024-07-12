@@ -16,7 +16,7 @@ export default function NotificationsScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Configurações</Text>
+        <Text style={styles.headerText}>Notificações</Text>
       </View>
 
       <View style={styles.settingsContainer}>
