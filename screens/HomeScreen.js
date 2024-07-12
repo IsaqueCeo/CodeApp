@@ -19,7 +19,6 @@ const recommendations = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in cursus magna.',
     discount: '-25%'
   },
-  // Adicione mais recomendações aqui
 ];
 
 export default function HomeScreen() {
